@@ -46,7 +46,7 @@ function add(a: number, b: number) {
     return a + b;
 };
 
-function printOutput(value) {
+function printOutput(value: any) {
     console.log(value);
 }
 
@@ -103,8 +103,11 @@ felicia = {
 };
 
 class Instructor implements Human {
-    firstName: string;
-    age: number;
+
+    constructor(
+        public firstName: string, 
+        public age: number, 
+    ) {}
     greet() {
         console.log("Hello!!!!!");
     }
