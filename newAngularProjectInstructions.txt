@@ -1,0 +1,12 @@
+Creating New Project
+1.  In parent folder where you want to create project, 
+ng new projectName  (no white space or word test) --no-strict
+2. Anuglar routing (N)
+3. Stylesheet (standard-default)
+4. Clear out app.component.html file
+
+Adding Bootstrap
+1. Install Bootstrap npm install --save bootstrap@3
+2. Open angular.json file
+3. Find styles array
+4. Add node_modules/bootstrap/dist/css/bootstrap.min.css before existing stylesheet
