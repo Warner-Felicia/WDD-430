@@ -1,0 +1,15 @@
+<button (click)="onToggleDetails()">Display Details</button>
+<p *ngIf="showDetails">Don't you love the life you killed?
+    The priest is on the phone
+    Your father hit the wall
+    Your ma disowned you
+    Don't supposed I'll ever know
+    What it means to be a man
+    It's something I can't change
+    I'll live around it
+</p>
+<div 
+    *ngFor="let click of buttonClicks; let i = index"
+    [ngClass]="{'colored': i >= 4}"
+    >{{ click }}
+</div>
