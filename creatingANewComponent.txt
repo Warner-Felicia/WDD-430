@@ -1,0 +1,18 @@
+Using CLI
+1. In folder where you want new component  - 
+ng g c componentName --skip-tests true
+2 To create in a sub folder add folder name to path
+
+Manually
+1. Create new folder with name of component 
+2. Add new file to folder -  name.component.ts
+3. export class NameComponent
+4. Add component decorator - @Componenet()
+5. Add import for component - import { Componenet } from '@angular/core'
+6. Configure decorator - {selector (prefix with app, to avoid overwriting), template/templateUrl, styles[ ] }
+7. Add stylesheet and html file to folder
+8.  Register in  app.module.ts - add import for component at top and to declarations  array 
+(.ts extension not included in file path)
+
+
+
