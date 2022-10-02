@@ -8,16 +8,9 @@
       </div>
       <div class="panel-body">
         <ul class="list-group">
-            <li class="list-group-item" *ngFor="let contact of contacts">
-                <p class="pull-left">{{ contact.name }}</p>
-                <div class="pull-right">
-                    <img src="{{ contact.imageUrl }}" alt="{{ contact.name }}">
-                </div>
-                <div class="clearfix"></div>
-            </li>
+          <cms-contact-item *ngFor="let contact of contacts" [contact]="contact" (click)="onSelected(contact)"></cms-contact-item>
         </ul>
       </div>
     </div>
   </div>
 </div>
-
