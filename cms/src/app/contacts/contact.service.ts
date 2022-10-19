@@ -23,6 +23,7 @@ export class ContactService {
         }
         // this.contacts.forEach(contact => {
         //     if (contact.id === id) {
+        //         console.log('match');
         //         return contact;
         //     }
         // })
