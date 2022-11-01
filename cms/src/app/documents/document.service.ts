@@ -1,5 +1,4 @@
 import { EventEmitter } from '@angular/core';
-import { MaxValidator } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 import { Document } from './document.model';
