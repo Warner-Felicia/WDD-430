@@ -15,4 +15,5 @@
     <p>Email: {{ contact.email }}</p>
     <p>Phone Number: {{ contact.phone }}</p>
   </div>
+  <cms-contact-item *ngFor="let contact of contact.group" [contact]="contact"></cms-contact-item>
 </div>

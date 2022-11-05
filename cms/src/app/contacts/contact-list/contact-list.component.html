@@ -8,7 +8,13 @@
       </div>
       <div class="panel-body">
         <ul class="list-group">
-          <cms-contact-item *ngFor="let contact of contacts" [contact]="contact" [routerLink]="[contact.id]"></cms-contact-item>
+          <cms-contact-item 
+          *ngFor="let contact of contacts" [contact]="contact" 
+          [routerLink]="[contact.id]"
+          dnd-draggable
+          [dragEnable]="true"
+          [dragData]="contact"
+          [dropZones]="['contactGroup']"></cms-contact-item>
         </ul>
       </div>
     </div>
