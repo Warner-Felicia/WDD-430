@@ -1,8 +1,6 @@
-import { formatCurrency } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { from } from 'rxjs';
 import { Item } from '../item.model';
 import { ItemService } from '../item.service';
 
@@ -14,8 +12,8 @@ import { ItemService } from '../item.service';
 export class ItemEditComponent implements OnInit {
   originalItem: Item;
   item: Item;
-  editMode = false;
   id: string;
+  @Input() editMode = false;
 
   constructor(private itemService: ItemService, private router: Router) { }
 
@@ -28,11 +26,7 @@ export class ItemEditComponent implements OnInit {
       this.id,
       value.name
     );
-    if (this.editMode) {
-      this.itemService.updateItem(this.originalItem, newItem);
-    } else {
-      this.itemService.addItem(newItem);
-    }
+    this.itemService.addItem(newItem);
     form.reset();
   }
 

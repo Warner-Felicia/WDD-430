@@ -5,8 +5,10 @@
   <div class="item-container" *ngIf="editMode">
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <input type="text" class="form-control" [ngModel]="item?.name" #name="ngModel" name="name">
-      <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
-      <button class="btn btn-primary" type="button" (click)="onCancel(f)">Cancel</button>
+      <div class="btn-toolbar">
+        <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
+        <button class="btn btn-primary" type="button" (click)="onCancel(f)">Cancel</button>
+      </div>
     </form>
   </div>
   <div class="item-actions">

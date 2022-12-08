@@ -1,1 +1,13 @@
-<p>store-list works!</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>Stores</h2>
+    <input type="text" class="form-control" #searchBox (keyup)="search(searchBox.value)"
+      placeholder="Enter a search value">
+  </div>
+  <div class="panel-body">
+    <ul class="list-group">
+      <app-single-store *ngFor="let store of stores | storesFilter: term" [store]="store">
+      </app-single-store>
+    </ul>
+  </div>
+</div>

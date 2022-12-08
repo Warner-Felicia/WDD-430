@@ -8,21 +8,14 @@ import { ListsComponent } from './lists/lists.component';
 import { PriceEditComponent } from './prices/price-edit/price-edit.component';
 import { PricesComponent } from './prices/prices.component';
 import { StoreEditComponent } from './stores/store-edit/store-edit.component';
+import { StoresResolverService } from './stores/stores-resolver.service';
 import { StoresComponent } from './stores/stores.component';
 
 const appRoutes: Routes = [
   { path: '', component: AddListItemComponent },
   { path: 'prices', component: PricesComponent },
-  { path: 'items', component: ItemsComponent, resolve: [ItemsResolverService], children: [
-      { path: 'id/edit', component: PriceEditComponent }
-  ] },
-  {
-    path: 'stores', component: StoresComponent, children: [
-      { path: 'new', component: StoreEditComponent },
-      { path: ':id', component: StoreEditComponent },
-      { path: ':id/edit', component: StoreEditComponent }
-    ]
-  },
+  { path: 'items', component: ItemsComponent, resolve: [ItemsResolverService] },
+  { path: 'stores', component: StoresComponent, resolve: [StoresResolverService] },
   { 
     path: 'lists', component: ListsComponent
   }

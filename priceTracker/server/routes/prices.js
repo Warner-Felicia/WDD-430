@@ -43,7 +43,7 @@ router.post('/', (req, res, next) => {
     .then(createdPrice => {
       res.status(201).json({
         message: 'Price added sucessfully',
-        contact: createdPrice
+        price: createdPrice
       })
     })
     .catch(error => {

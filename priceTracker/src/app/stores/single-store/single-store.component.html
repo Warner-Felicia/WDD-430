@@ -1,0 +1,31 @@
+<li class="list-group-item">
+  <div class="store-container" *ngIf="!editMode">
+    <p class="store-name">{{ store.name }}</p>
+    <p>{{ store.location }}</p>
+  </div>
+  <div class="store-container" *ngIf="editMode">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="col-sm-12 form-group">
+        <label for="name">Store Name</label>
+        <input type="text" id="name" class="form-control" [ngModel]="store?.name" #name="ngModel" name="name" required>
+      </div>
+      <div class="col-sm-12 form-group">
+        <label for="location">Location</label>
+        <input type="text" id="location" class="form-control" [ngModel]="store?.location" #location="ngModel"
+          name="location">
+      </div>
+      <div class="btn-toolbar">
+        <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
+        <button class="btn btn-primary" type="button" (click)="onCancel(f)">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div class="store-actions">
+    <div class="icon-container" (click)="onEdit()">
+      <img src="assets/edit.png">
+    </div>
+    <div class="icon-container" (click)="onDelete()">
+      <img src="assets/delete.png">
+    </div>
+  </div>
+</li>

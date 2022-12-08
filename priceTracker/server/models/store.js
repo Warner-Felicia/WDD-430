@@ -12,10 +12,6 @@ const storeSchema = mongoose.Schema({
   location: {
     type: String,
     required: false
-  },
-  aisles: {
-    type: Array,
-    required: false
   }
 });
 

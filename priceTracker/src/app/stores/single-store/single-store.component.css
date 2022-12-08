@@ -4,18 +4,18 @@ li {
   margin: auto;
 }
 
-.item-container {
-  display: flex;
-  align-items: center;
+.store-name {
+  font-weight: bold;
+  font-size: 22px;
 }
 
 p {
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 20px;
 
 }
 
-.item-actions {
+.store-actions {
   display: flex;
 }
 
@@ -26,8 +26,4 @@ p {
 
 .icon-container img {
   width: 100%;
-}
-
-.btn-toolbar {
-  margin-top: 5px;
 }

@@ -1,1 +1,25 @@
-<p>store-edit works!</p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form id="store-edit" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="row">
+        <h2>Add a Store</h2>
+        <div class="col-sm-12 form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control required" size="120" max="120" name="name"
+            [ngModel]="store?.name" #name="ngModel" required>
+        </div>
+        <div class="col-sm-12 form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" class="form-control required" size="120" max="120" name="location" [ngModel]="store?.location"
+            #location="ngModel" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 btn-toolbar">
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
+          <button class="btn btn-primary" type="button" (click)="onCancel(f)">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

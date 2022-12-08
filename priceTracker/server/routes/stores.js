@@ -22,20 +22,17 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    const id = sequenceGenerator.nextId('stores');
-    const aisles = req.body.aisles.split(',');
-
-    const store = new Store({
-        id: id,
-        name: req.body.name,
-        location: req.body.location,
-        aisles: aisles
-    });
+  const id = sequenceGenerator.nextId('stores');
+  const store = new Store({
+    id: id,
+    name: req.body.name,
+    location: req.body.location,
+  });
   store.save()
-    .then(createdContact => {
+    .then(createdStore => {
       res.status(201).json({
         message: 'Store added sucessfully',
-        contact: store
+        store: store
       })
     })
     .catch(error => {
@@ -47,13 +44,11 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-  const aisles = req.body.aisles.split(',');
   Store.findOne({ id: req.params.id })
     .then(store => {
       store.name = req.body.name;
       store.location = req.body.location;
-      store.aisles = aisles;
-      
+
       Store.updateOne({ id: req.params.id }, store)
         .then(result => {
           res.status(204).json({

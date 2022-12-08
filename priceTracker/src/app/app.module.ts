@@ -19,6 +19,8 @@ import { AddListItemComponent } from './lists/add-list-item/add-list-item.compon
 import { ItemListComponent } from './items/item-list/item-list.component';
 import { SingleItemComponent } from './items/single-item/single-item.component';
 import { ItemsFilterPipe } from './items/items-filter.pipe';
+import { SingleStoreComponent } from './stores/single-store/single-store.component';
+import { StoresFilterPipe } from './stores/stores-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { ItemsFilterPipe } from './items/items-filter.pipe';
     AddListItemComponent,
     ItemListComponent,
     SingleItemComponent,
-    ItemsFilterPipe
+    ItemsFilterPipe,
+    SingleStoreComponent,
+    StoresFilterPipe
   ],
   imports: [
     BrowserModule,

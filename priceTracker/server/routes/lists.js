@@ -34,7 +34,7 @@ router.post('/', (req, res, next) => {
     .then(createdList => {
       res.status(201).json({
         message: 'List added sucessfully',
-        contact: createdList
+        list: createdList
       })
     })
     .catch(error => {
