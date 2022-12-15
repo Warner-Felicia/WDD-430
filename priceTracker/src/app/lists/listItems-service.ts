@@ -48,7 +48,6 @@ export class ListItemsService {
       newListItem,
       { headers }
     ).subscribe(responseData => {
-      console.log(responseData);
       this.listItems.push(responseData.listItem);
       this.listItemsChangeEvent.next(this.listItems.slice());
     });
