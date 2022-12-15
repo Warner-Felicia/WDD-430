@@ -1,0 +1,13 @@
+.row {
+  padding: 10px;
+}
+
+p {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+
+}
+
+.pull-left {
+  width: 75%;
+}

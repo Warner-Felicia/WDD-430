@@ -1,1 +1,61 @@
-<p>price-edit works!</p>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <h2 *ngIf="!editMode" class="pull-left">Add a Price</h2>
+        <h2 *ngIf="editMode" class="pull-left">Edit</h2>
+        <button class="btn btn-primary pull-right" routerLink="/items/new">Add An Item</button>
+        <button class="btn btn-primary pull-right" routerLink="/stores/new">Add A Store</button>
+      </div>
+      <form id="price-edit" #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="col-sm-6 form-group">
+          <label for="name">Item</label>
+          <select name="item" id="item" class="form-control required" [ngModel]="price?.item.id" #item="ngModel"
+            required>
+            <option>--Select an Item--</option>
+            <option value="{{ item.id }}" *ngFor="let item of items; ">{{ item.name }}</option>
+          </select>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label for="name">Price</label>
+          <input type="number" id="value" class="form-control required" size="120" max="120" name="value"
+            [ngModel]="price?.value" #name="ngModel" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label for="size">Size</label>
+          <input type="number" id="name" class="form-control required" size="120" max="120" name="size"
+            [ngModel]="price?.size" #size="ngModel" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label for="unit">Unit</label>
+          <input type="text" id="unit" class="form-control required" size="120" max="120" name="unit"
+            [ngModel]="price?.unit" #unit="ngModel" required>
+        </div>
+        <div class="col-sm-4 form-group">
+          <label for="brand">Brand</label>
+          <input type="text" id="brand" class="form-control" size="120" max="120" name="brand" [ngModel]="price?.brand"
+            #brand="ngModel">
+        </div>
+        <div class="col-sm-4 form-group">
+          <label for="store">Store</label>
+          <select name="store" id="store" class="form-control require" [ngModel]="price?.store.id" #store="ngModel"
+            required>
+            <option value="">--Select a Store--</option>
+            <option value="{{ store.id }}" *ngFor="let store of stores">{{ store.name }} - {{ store.location }}</option>
+          </select>
+        </div>
+        <div class="col-sm-4 form-group">
+          <label for="name">Aisle</label>
+          <input type="text" id="aisle" class="form-control required" size="120" max="120" name="aisle"
+            [ngModel]="price?.aisle" #aisle="ngModel" required>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 btn-toolbar">
+            <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
+            <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

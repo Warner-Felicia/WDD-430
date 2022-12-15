@@ -1,21 +1,28 @@
 const express = require('express');
 
-const List = require('../models/list');
+const ListItem = require('../models/list-item');
 const sequenceGenerator = require('./sequenceGenerator');
 
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  List.find()
-    .then(lists => {
+  ListItem.find()
+    .populate([{
+      path: 'price',
+      populate: { path: 'item' }
+    }, {
+      path: 'price',
+      populate: { path: 'store' }
+    }])
+    .then(listItems => {
       res.status(200).json({
-        message: 'Lists fetched successfully',
-        lists: lists
+        message: 'List items fetched successfully',
+        listItems: listItems
       })
     })
     .catch(error => {
       res.status(500).json({
-        message: "Unable to get lists",
+        message: "Unable to get list items",
         error: error
       });
     });
@@ -23,40 +30,47 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const id = sequenceGenerator.nextId('lists');
-  const listItems = req.body.listItems.split(',');
-  const list = new List({
+  const listItem = new ListItem({
     id: id,
-    listItems: listItems,
-    store: req.body.store,
-    listType: req.body.listType
+    price: req.body.price,
+    quantity: req.body.quantity
   });
-  list.save()
-    .then(createdList => {
-      res.status(201).json({
-        message: 'List added sucessfully',
-        list: createdList
+  listItem.save()
+    .then(createdListItem => {
+      createdListItem.populate({
+        path: 'price',
+        populate: { path: 'item' }
       })
+        .then(fullyPopulatedListItem => {
+          res.status(201).json({
+            listItem: fullyPopulatedListItem
+          })
+        })
+        .catch(error => {
+          res.status(500).json({
+            message: 'Unable to populate store',
+            error: error
+          })
+        })
     })
     .catch(error => {
       res.status(500).json({
-        message: 'An error occurred!',
+        message: 'Item not saved',
         error: error
       })
     });
 });
 
 router.put('/:id', (req, res, next) => {
-  const aisles = req.body.aisles.split(',');
-  List.findOne({ id: req.params.id })
-    .then(list => {
-      list.name = req.body.name;
-      list.location = req.body.location;
-      list.aisles = aisles;
+  ListItem.findOne({ id: req.params.id })
+    .then(listItem => {
+      listItem.quantity = req.body.quantity;
 
-      List.updateOne({ id: req.params.id }, list)
+      ListItem.updateOne({ id: req.params.id }, listItem)
         .then(result => {
+          console.log(result);
           res.status(204).json({
-            message: 'List updated sucessfully'
+            message: 'List item updated sucessfully'
           });
         })
         .catch(error => {
@@ -68,19 +82,19 @@ router.put('/:id', (req, res, next) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: 'List not found',
+        message: 'List item not found',
         error: error
       })
     });
 });
 
 router.delete('/:id', (req, res, next) => {
-  List.findOne({ id: req.params.id })
-    .then(list => {
-      List.deleteOne({ id: req.params.id })
+  ListItem.findOne({ id: req.params.id })
+    .then(listItem => {
+      ListItem.deleteOne({ id: req.params.id })
         .then(result => {
           res.status(204).json({
-            message: 'List deleted successfully'
+            message: 'List item deleted successfully'
           });
         })
         .catch(error => {
@@ -92,10 +106,19 @@ router.delete('/:id', (req, res, next) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: 'List not found',
-        error: { list: 'List not found' }
+        message: 'List item not found',
+        error: { listItem: 'List item not found' }
       });
     });
 });
+
+router.delete('/', (req, res, next) => {
+  ListItem.collection.drop()
+    .then(result => {
+      res.status(200).json({
+        message: 'List items successfully deleted'
+      })
+    });
+})
 
 module.exports = router;

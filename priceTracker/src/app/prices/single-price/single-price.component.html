@@ -1,0 +1,26 @@
+<li class="list-group-item">
+  <div class="row">
+    <div class="col-xs-10">
+      <div class="row">
+        <p class="price-name col-xs-4"><strong>{{ price.item.name }}</strong></p>
+        <p class="col-xs-4">${{ price.value }}</p>
+        <p class="col-xs-4">{{ price.size }} {{ price.unit }}</p>
+      </div>
+      <div class="row">
+        <p class="col-xs-6">{{ price.store.name }} - {{ price.store.location }}</p>
+        <p class="col-xs-6">{{ price.brand }}</p>
+      </div>
+    </div>
+    <div class="col-xs-2">
+      <div class="row">
+        <div class="icon-container col-xs-6" (click)="onEdit()">
+          <img src="assets/edit.png">
+        </div>
+        <div class="icon-container col-xs-6" (click)="onDelete()">
+          <img src="assets/delete.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</li>

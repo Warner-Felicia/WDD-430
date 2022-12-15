@@ -14,7 +14,7 @@ var index = require('./server/routes/app');
 var priceRoutes = require('./server/routes/prices');
 var itemRoutes = require('./server/routes/items');
 var storesRoutes = require('./server/routes/stores');
-var listRoutes = require('./server/routes/lists');
+var listItemRoutes = require('./server/routes/lists');
 
 
 // establish a connection to the mongo database
@@ -65,7 +65,7 @@ app.use('/', index);
 app.use('/prices', priceRoutes);
 app.use('/items', itemRoutes);
 app.use('/stores', storesRoutes);
-app.use('/lists', listRoutes);
+app.use('/listItems', listItemRoutes);
 
 // Tell express to map all other non-defined routes back to the index page
 app.get('*', (req, res) => {

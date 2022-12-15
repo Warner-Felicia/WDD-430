@@ -1,0 +1,35 @@
+<li class="list-group-item">
+  <div class="row">
+    <div class="col-xs-10" *ngIf="!editMode">
+      <div class="row">
+        <p class="price-name col-xs-4"><strong>({{ listItem.quantity }}) {{ listItem.price.item.name }}</strong></p>
+        <p class="col-xs-4">{{ listItem.price.store.name }} - {{ listItem.price.store.location }}</p>
+        <p class="col-xs-4">${{ listItem.price.value }}</p>
+      </div>
+    </div>
+    <div class="item-container col-xs-10" *ngIf="editMode">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="row">
+          <p class="col-xs-2"><input type="number" class="form-control" [ngModel]="listItem?.quantity" #quantity="ngModel" name="quantity"></p>
+          <p class="price-name col-xs-4"><strong>{{ listItem.price.item.name }}</strong></p>
+          <p class="col-xs-4">{{ listItem.price.store.name }} - {{ listItem.price.store.location }}</p>
+          <p class="col-xs-2">${{ listItem.price.value }}</p>
+        </div>
+        <div class="btn-toolbar">
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
+          <button class="btn btn-primary" type="button" (click)="onCancel(f)">Cancel</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-xs-2">
+      <div class="row">
+        <div class="icon-container col-xs-6" (click)="onEdit()">
+          <img src="assets/edit.png">
+        </div>
+        <div class="icon-container col-xs-6" (click)="onDelete()">
+          <img src="assets/delete.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

@@ -1,13 +1,16 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h2>Items</h2>
-    <input type="text" class="form-control" #searchBox (keyup)="search(searchBox.value)"
-      placeholder="Enter a search value">
-  </div>
-  <div class="panel-body">
-    <ul class="list-group">
-      <app-single-item *ngFor="let item of items | itemsFilter: term" [item]="item">
-      </app-single-item>
-    </ul>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="pull-left">Manage Items</h2>
+      <a class="btn btn-primary pull-right" routerLink="new">Add An Item</a>
+      <input type="text" class="form-control" #searchBox (keyup)="search(searchBox.value)"
+        placeholder="Enter a search value">
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <app-single-item *ngFor="let item of items | itemsFilter: term" [item]="item">
+        </app-single-item>
+      </ul>
+    </div>
   </div>
 </div>

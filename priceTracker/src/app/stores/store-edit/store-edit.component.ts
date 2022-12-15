@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -31,8 +32,8 @@ export class StoreEditComponent implements OnInit {
     form.reset();
   }
 
-  onCancel(form: NgForm) {
-    form.reset();
+  onCancel() {
+    this.router.navigate(['stores']);
   }
 
 }

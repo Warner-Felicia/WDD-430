@@ -32,7 +32,7 @@ router.post('/', (req, res, next) => {
     .then(createdStore => {
       res.status(201).json({
         message: 'Store added sucessfully',
-        store: store
+        store: createdStore
       })
     })
     .catch(error => {

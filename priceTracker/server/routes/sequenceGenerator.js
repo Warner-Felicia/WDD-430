@@ -50,7 +50,7 @@ SequenceGenerator.prototype.nextId = function (collectionType) {
     case 'lists':
       maxListId++;
       updateObject = { maxListId: maxListId };
-      nextId = maxPriceId;
+      nextId = maxListId;
       break;
     default:
       return -1;

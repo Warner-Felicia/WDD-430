@@ -1,1 +1,16 @@
-<p>price-list works!</p>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="pull-left">Manage Prices</h2>
+      <a class="btn btn-primary pull-right" routerLink="new">Add A Price</a>
+      <input type="text" class="form-control" #searchBox (keyup)="search(searchBox.value)"
+        placeholder="Enter a search value">
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <app-single-price *ngFor="let price of prices | pricesFilter: term: 'priceList'" [price]="price">
+        </app-single-price>
+      </ul>
+    </div>
+  </div>
+</div>

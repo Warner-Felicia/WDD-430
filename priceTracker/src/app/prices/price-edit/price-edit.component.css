@@ -1,0 +1,16 @@
+.panel {
+  width: 60%;
+  min-width: 400px;
+  margin: 20px auto;
+}
+
+h2 {
+  margin-left: 30px;
+}
+
+.btn {
+  margin: 15px;
+}
+
+
+

@@ -27,11 +27,11 @@ export class ItemEditComponent implements OnInit {
       value.name
     );
     this.itemService.addItem(newItem);
-    form.reset();
+    this.router.navigate(['items']);
   }
 
-  onCancel(form: NgForm) {
-    form.reset();
+  onCancel() {
+    this.router.navigate(['items']);
   }
 
 }

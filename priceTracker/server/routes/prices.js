@@ -2,6 +2,7 @@ const express = require('express');
 
 const Price = require('../models/price');
 const Item = require('../models/item');
+const Store = require('../models/store');
 
 const sequenceGenerator = require('./sequenceGenerator');
 
@@ -9,7 +10,7 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
   Price.find()
-    .populate('name')
+    .populate('item')
     .populate('store')
     .then(prices => {
       res.status(200).json({
@@ -25,39 +26,80 @@ router.get('/', (req, res, next) => {
     });
 });
 
+router.get('/:id', (req, res, next) => {
+  Price.findOne({ id: req.params.id })
+    .populate('item')
+    .populate('store')
+      .then(price => {
+        res.status(200).json({
+          message: 'Price fetched',
+          price: price
+        })
+      })
+})
+
 router.post('/', (req, res, next) => {
   const id = sequenceGenerator.nextId('prices');
+  let itemId;
+  let storeId;
 
-  const price = new Price({
-    id: id,
-    name: req.body.name,
-    size: req.body.size,
-    unit: req.body.unit,
-    value: req.body.value,
-    store: req.body.store,
-    brand: req.body.brand,
-    aisle: req.body.aisle,
-    lastUpdated: new Date()
-  });
-  price.save()
-    .then(createdPrice => {
-      res.status(201).json({
-        message: 'Price added sucessfully',
-        price: createdPrice
-      })
+  Item.findOne({ id: req.body.item })
+    .then(item => {
+      itemId = item._id;
+      Store.findOne({ id: req.body.store })
+        .then(store => {
+          storeId = store._id;
+          const price = new Price({
+            id: id,
+            item: itemId,
+            size: req.body.size,
+            unit: req.body.unit,
+            value: req.body.value,
+            unitPrice: req.body.unitPrice,
+            store: storeId,
+            brand: req.body.brand,
+            aisle: req.body.aisle,
+            lastUpdated: new Date()
+          })
+          price.save()
+            .then(createdPrice => {
+              createdPrice.populate('item')
+              .then(itemPopulated => {
+                itemPopulated.populate('store')
+                  .then(populatedPrice => {
+                    res.status(201).json({
+                      message: 'Price added sucessfully',
+                      price: populatedPrice
+                    })
+                  })
+              })              
+            })
+            .catch(error => {
+              res.status(500).json({
+                message: 'Error, unable to save price',
+                error: error
+              })
+            })
+        })
+        .catch(error => {
+          res.status(500).json({
+            message: 'Unable to retrieve store',
+            error: error
+          })
+        });
     })
     .catch(error => {
       res.status(500).json({
-        message: 'An error occurred!',
+        message: 'Unable to retrieve item',
         error: error
       })
-    });
+    })
 });
 
 router.put('/:id', (req, res, next) => {
   Price.findOne({ id: req.params.id })
     .then(price => {
-      price.name = req.body.name;
+      price.item = req.body.item;
       price.size = req.body.size;
       price.unit = req.body.unit;
       price.value = req.body.value;

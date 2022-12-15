@@ -1,1 +1,14 @@
-<p>lists works!</p>
+<div class="container">
+  <app-add-list-item></app-add-list-item>
+  <div class="panel panel-default">
+  <div class="panel-heading clearfix">
+    <h2 class="pull-left">Grocery List</h2>
+    <button class="btn btn-danger pull-right" (click)="onDeleteAllListItems()">Start New List</button>
+  </div>
+  <div class="panel-body">
+    <ul>
+      <app-list-item *ngFor="let listItem of listItems" [listItem]="listItem"></app-list-item>
+    </ul>
+  </div>
+</div>
+</div>

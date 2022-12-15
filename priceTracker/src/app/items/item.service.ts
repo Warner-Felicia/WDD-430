@@ -12,13 +12,12 @@ export class ItemService {
   itemListChangeEvent = new Subject<Item[]>();
 
   constructor(private http: HttpClient) { 
+  
     this.http.get<{ message: string, items: Item[] }>(
       'http://localhost:3000/items'
     ).subscribe((responseData: { message: String, items: Item[]}) => {
       this.items = responseData.items;
       this.sortAndSend();
-    }, (error: any) => {
-      console.log(error);
     });
   }
 

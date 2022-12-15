@@ -9,9 +9,9 @@ import { PricesComponent } from './prices/prices.component';
 import { ListsComponent } from './lists/lists.component';
 import { ItemsComponent } from './items/items.component';
 import { StoresComponent } from './stores/stores.component';
-import { PriceEditComponent } from './prices/price-edit/price-edit.component';
 import { ItemEditComponent } from './items/item-edit/item-edit.component';
 import { PriceListComponent } from './prices/price-list/price-list.component';
+import { PriceEditComponent } from './prices/price-edit/price-edit.component';
 import { StoreListComponent } from './stores/store-list/store-list.component';
 import { StoreEditComponent } from './stores/store-edit/store-edit.component';
 import { AppRoutingModule } from './app-routing-module';
@@ -21,6 +21,10 @@ import { SingleItemComponent } from './items/single-item/single-item.component';
 import { ItemsFilterPipe } from './items/items-filter.pipe';
 import { SingleStoreComponent } from './stores/single-store/single-store.component';
 import { StoresFilterPipe } from './stores/stores-filter.pipe';
+import { SinglePriceComponent } from './prices/single-price/single-price.component';
+import { PricesFilterPipe } from './prices/prices-filter.pipe';
+import { SearchResultComponent } from './lists/search-result/search-result.component';
+import { ListItemComponent } from './lists/list-item/list-item.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { StoresFilterPipe } from './stores/stores-filter.pipe';
     SingleItemComponent,
     ItemsFilterPipe,
     SingleStoreComponent,
-    StoresFilterPipe
+    StoresFilterPipe,
+    SinglePriceComponent,
+    PricesFilterPipe,
+    SearchResultComponent,
+    ListItemComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
+<div class="container">
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h2>Stores</h2>
+    <h2 class="pull-left">Manage Stores</h2>
+    <a class="btn btn-primary pull-right" routerLink="new">Add A Store</a>
     <input type="text" class="form-control" #searchBox (keyup)="search(searchBox.value)"
       placeholder="Enter a search value">
   </div>
@@ -10,4 +12,5 @@
       </app-single-store>
     </ul>
   </div>
+</div>
 </div>

@@ -5,7 +5,7 @@ const priceSchema = mongoose.Schema({
     type: Number,
     required: true
   },
-  name: {
+  item: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Item',
     required: true
@@ -19,6 +19,10 @@ const priceSchema = mongoose.Schema({
     required: false
   },
   value: {
+    type: Number,
+    required: true
+  },
+  unitPrice: {
     type: Number,
     required: true
   },

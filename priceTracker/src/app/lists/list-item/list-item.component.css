@@ -1,0 +1,14 @@
+p {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+
+}
+
+.icon-container {
+  width: 50px;
+  padding: 10px;
+}
+
+.icon-container img {
+  width: 100%;
+}
